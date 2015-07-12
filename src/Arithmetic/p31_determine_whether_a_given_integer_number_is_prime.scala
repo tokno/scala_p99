@@ -1,6 +1,6 @@
 implicit class P31(self: Int) {
   def isPrime: Boolean = self match {
-    case 1 | 2 => true
+    case 1 => false
     case _ => {
       val limit = self / 2
       (2 to limit).forall((n) => {
@@ -10,7 +10,7 @@ implicit class P31(self: Int) {
   }
 }
 
-assert(1.isPrime)
+assert(!1.isPrime)
 assert(2.isPrime)
 assert(3.isPrime)
 assert(!4.isPrime)
