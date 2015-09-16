@@ -12,15 +12,22 @@ implicit class P35(self: Int) {
 
   def primeFactors: List[Int] = {
     self match {
-      case 0 | 1 => List()
+      case 0 => List()
+      case 1 => List(1)
       case _ => {
         val factor = minPrimeFactor
-        factor :: (self / factor).primeFactors
+        val quotient = (self / factor)
+
+        if (2 < quotient)
+          factor :: quotient.primeFactors
+        else
+          List(factor)
       }
     }
   }
 }
 
+assert(1.primeFactors == List(1))
 assert(11.primeFactors == List(11))
 assert(315.primeFactors == List(3, 3, 5, 7))
 assert(9999.primeFactors == List(3, 3, 11, 101))
